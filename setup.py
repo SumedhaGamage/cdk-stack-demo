@@ -20,6 +20,13 @@ setuptools.setup(
 
     install_requires=[
         "aws-cdk.core==1.43.0",
+        "aws_cdk.aws_apigateway==1.43.0",
+        "aws_cdk.aws_s3==1.43.0",
+        "aws_cdk.aws_s3_deployment==1.43.0",
+        "aws_cdk.aws_route53==1.43.0",
+        "aws_cdk.aws_cloudfront==1.43.0",
+        "aws_cdk.aws_certificatemanager==1.43.0",
+        "aws_cdk.aws_route53_targets==1.43.0"
     ],
 
     python_requires=">=3.6",
