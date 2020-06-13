@@ -27,12 +27,13 @@ class StaticWebConstruct(core.Construct):
         destination_bucket=bucket,
         sources=[web_content])
 
-        #Certificate reference
+        # Certificate reference
         certificate = cdn.ViewerCertificate.from_acm_certificate(
-                    cert.Certificate.from_certificate_arn(self, "enqbatorCertificate","arn:aws:acm:us-east-1:035060142173:certificate/3cf99a52-4e8a-4992-b420-fdb0b4414ffd"),
-                    aliases=["ffive.com", "www.ffive.com"]
+                    cert.Certificate.from_certificate_arn(self, "enqbatorCertificate","arn:aws:acm:us-east-1:035060142173:certificate/6c91961c-f6d3-411a-9de1-ac18b0db57e4"),
+                    aliases=["dev-4.fun", "www.dev-4.fun"]
         )
-        #Cloudfront develivery for the S3 content
+
+        #Cloudfront develivery for S3 content
         distribution = cdn.CloudFrontWebDistribution(self, "cdn-distribution",
         origin_configs=[
             cdn.SourceConfiguration(
@@ -41,5 +42,5 @@ class StaticWebConstruct(core.Construct):
         ], 
         viewer_certificate=certificate)
 
-        ARecordCreate(self, "ffive-arecord", cdn_target=distribution, domain_name="ffive.com", record_name="thumbnail.ffive.com")
-        ARecordCreate(self, "ffive-arecord-www", cdn_target=distribution, domain_name="ffive.com", record_name="www.thumbnail.ffvie.com")
+        ARecordCreate(self, "dev-4.fun-arecord", cdn_target=distribution, domain_name="dev-4.fun", record_name="thumbnail.dev-4.fun")
+        ARecordCreate(self, "dev-4.fun-arecord-www", cdn_target=distribution, domain_name="dev-4.fun", record_name="www.thumbnail.dev-4.fun")

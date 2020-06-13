@@ -1,5 +1,6 @@
 from aws_cdk import core
 from web_construct import StaticWebConstruct
+from lambda_api_construct import LambdaApiGateway
 
 
 class ThumbnailMakerStack(core.Stack):
@@ -8,4 +9,4 @@ class ThumbnailMakerStack(core.Stack):
         super().__init__(scope, id, **kwargs)
 
         StaticWebConstruct(self, "static-web-construct")
-
+        LambdaApiGateway(self, "Lambda-API-Gateway")

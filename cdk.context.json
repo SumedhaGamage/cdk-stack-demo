@@ -2,5 +2,9 @@
   "hosted-zone:account=035060142173:domainName=ffive.com:region=us-east-1": {
     "Id": "/hostedzone/Z0186987HALRILSH14YK",
     "Name": "ffive.com."
+  },
+  "hosted-zone:account=035060142173:domainName=dev-4.fun:region=us-east-1": {
+    "Id": "/hostedzone/Z095218712S8UWOYW2V9F",
+    "Name": "dev-4.fun."
   }
 }

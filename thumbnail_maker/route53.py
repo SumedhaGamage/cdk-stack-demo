@@ -10,7 +10,7 @@ class ARecordCreate(core.Construct):
     def __init__(self, scope: core.Construct, id: str, *, cdn_target: cdn.IDistribution, domain_name: str, record_name: str):
         super().__init__(scope, id)
 
-        hosted_zone = route.HostedZone.from_lookup(self, "ffvie-hosted-zone", domain_name=domain_name)
+        hosted_zone = route.HostedZone.from_lookup(self, "dev-4.fun-hosted-zone", domain_name=domain_name)
         route.ARecord(self, id,
         zone=hosted_zone,
         target=route.RecordTarget(alias_target=target.CloudFrontTarget(distribution=cdn_target)),
