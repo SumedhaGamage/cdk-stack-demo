@@ -17,7 +17,7 @@ class LambdaApiGateway(core.Construct):
         bucket = s3.Bucket(self, "thumbnail-bucket", bucket_name="tumbnail-store-bucket")
         func = _lambda.Function(self, "thumbnail_maker",
         code=_lambda.Code.from_asset("code"),
-        handler="handler.tubmnail_maker",
+        handler="handler.thubmnail_maker",
         runtime=_lambda.Runtime.PYTHON_3_8,
         layers=[layer]
         )
@@ -25,4 +25,5 @@ class LambdaApiGateway(core.Construct):
         func.add_environment("BUCKET_NAME", bucket.bucket_name)
         bucket.grant_read_write(func)
 
-        api = gateway.LambdaRestApi(self, "api-gateway", handler=func)
+        api = gateway.LambdaRestApi(self, "api-gateway", handler=func, binary_media_types=["image/jpeg","image/png"],
+        default_cors_preflight_options=gateway.CorsOptions(allow_origins=['http://localhost:4200'], allow_methods=gateway.Cors.ALL_METHODS, status_code=200)        )

@@ -1,29 +1,34 @@
-import PIL.Image as Image
 import boto3
 import os
+import json
+import base64
 
-s3 = boto3.resource('s3')
+s3 = boto3.client('s3')
 # dynmo_db = boto3.resource()
 
 sizes = [(120, 120), (720, 720), (1600, 1600)]
 
-def tubmnail_maker(event, context):
+def thubmnail_maker(event, context):
 
     bucket_name = os.environ.get('BUCKET_NAME')
     # table_name = os.environ.get('TABLE_NAME')
+    data = event['body']
+    dec = base64.b64decode(data)
 
-    # for size in sizes:
-        # image = Image.frombytes('L', (1600,1600), event.body)
-        # image.thumbnail(size)
-        # s3.Bucket(bucket_name).upload_fileobj()
-        
-    print(event)
-    # print(context)
+    response = s3.put_object(
+        ACL='public-read',
+        Body=dec,
+        Bucket=bucket_name,
+        Key="myq.png"
+        )
+
     return {
         'statusCode': 200,
-        'body' : {
-            'event': event
-            # 'context': context
-        }
+        'headers': {
+            'Access-Control-Allow-Headers': "Content-Type",
+            'Access-Control-Allow-Origin': 'http://localhost:4200',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': json.dumps(response)
     }
     
