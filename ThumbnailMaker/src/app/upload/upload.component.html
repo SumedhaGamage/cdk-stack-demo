@@ -1,12 +1,14 @@
 <div fxLayout="column" fxLayoutAlign="space-around stretch" style="background-color: antiquewhite;" class="full_height">
 
-  <div fxLayout="row" fxFlex="50" fxLayoutAlign="space-evenly end">
+  <div fxLayout="row" fxFlex="20" fxLayoutAlign="space-evenly end">
     <div class="text" style="text-align: center; width: 100%;">File Uploader</div>
   </div>
   <div fxLayout="row" fxFlex fxLayoutAlign="center start" >
-    <div fxFlex="40" fxFlex.gt-md="35" fxFlex.gt-lg="20" fxFlex.lt-md="60">
+    <div fxFlex="20" fxFlex.gt-md="35" fxFlex.gt-lg="20" fxFlex.lt-md="60" style="width: 100%;">
         <input class="ng-hide" id="input-file-id" multiple type="file" (change)="onFileSelected($event)"/>
         <button type="button" (click)="onUpload()">Upload</button>
+    </div>
+      
     </div>
 
 </div>

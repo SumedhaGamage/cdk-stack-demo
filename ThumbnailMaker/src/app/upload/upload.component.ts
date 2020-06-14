@@ -28,11 +28,11 @@ export class UploadComponent implements OnInit {
     const data = {'image': this.selectedFile}
     console.log(data);
     
-    this.http.post('https://em4370mz6b.execute-api.us-east-1.amazonaws.com/prod', this.selectedFile, {
+    this.http.post('https://93m87fqod5.execute-api.us-east-1.amazonaws.com/prod/', this.selectedFile, {
       headers: new HttpHeaders().set("content-type", "image/png")
     })
     .subscribe(res => {
-      console.log(res);
+      console.log(res['object_url']);
       
     })
     

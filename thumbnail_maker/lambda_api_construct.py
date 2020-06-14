@@ -2,7 +2,8 @@ from aws_cdk import (
     core,
     aws_s3 as s3,
     aws_lambda as _lambda,
-    aws_apigateway as gateway
+    aws_apigateway as gateway,
+    aws_dynamodb as db
 )
 
 class LambdaApiGateway(core.Construct):
@@ -26,4 +27,12 @@ class LambdaApiGateway(core.Construct):
         bucket.grant_read_write(func)
 
         api = gateway.LambdaRestApi(self, "api-gateway", handler=func, binary_media_types=["image/jpeg","image/png"],
-        default_cors_preflight_options=gateway.CorsOptions(allow_origins=['http://localhost:4200'], allow_methods=gateway.Cors.ALL_METHODS, status_code=200)        )
+        default_cors_preflight_options=gateway.CorsOptions(allow_origins=['http://localhost:4200'], allow_methods=gateway.Cors.ALL_METHODS, status_code=200)
+        )
+
+        table = db.Table(self, "metadata-table", table_name="picture_meta_data", 
+        partition_key=db.Attribute(name="id", type=db.AttributeType.STRING))
+
+        func.add_environment("TABLE_NAME", table.table_name)
+        table.grant_read_write_data(func)
+        
