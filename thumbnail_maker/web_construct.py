@@ -29,7 +29,7 @@ class StaticWebConstruct(core.Construct):
 
         # Certificate reference
         certificate = cdn.ViewerCertificate.from_acm_certificate(
-                    cert.Certificate.from_certificate_arn(self, "enqbatorCertificate","arn:aws:acm:us-east-1:035060142173:certificate/6c91961c-f6d3-411a-9de1-ac18b0db57e4"),
+                    cert.Certificate.from_certificate_arn(self, "dev-4.fun-certificate","arn:aws:acm:us-east-1:035060142173:certificate/6c91961c-f6d3-411a-9de1-ac18b0db57e4"),
                     aliases=["dev-4.fun", "www.dev-4.fun"]
         )
 
